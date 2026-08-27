@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->rowCount() > 0) {
             $error = 'Nombre de usuario o email existentes';
         } else {
-            // Guardado temporal en texto plano (se corregira en el Paso 8)
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-            if ($stmt->execute([$username, $email, $password])) {
+            if ($stmt->execute([$username, $email, $hashed_password])) {
                 $success = '¡Registro exitoso!';
             } else {
                 $error = 'Registro fallido. Por favor, intentelo nuevamente.';
