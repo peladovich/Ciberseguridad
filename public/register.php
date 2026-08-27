@@ -37,6 +37,15 @@ $error = 'Registro fallido. Por favor, intentelo nuevamente.';
 }
 }
 }
+// APLICAR HASH - Bcrypt con Salt automatica
+$hashed_password = password_hash($password , PASSWORD_DEFAULT);
+$stmt = $pdo->prepare("INSERT INTO users (username , email, password) VALUES (?,
+?, ?)");
+if ($stmt->execute([$username , $email, $hashed_password])) {
+$success = '¡Registro exitoso!';
+} else {
+$error = 'Registro fallido. Por favor, intentelo nuevamente.';
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -72,8 +81,7 @@ required>
 </div>
 <div class="form-group">
 <label for="confirm_password">Confirme su Password </label>
-<input type="password" id="confirm_password" name="
-confirm_password" required>
+<input type="password" id="confirm_password" name="confirm_password" required>
 </div>
 <button type="submit" class="btn btn-primary">Registrese </button>
 
