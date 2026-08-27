@@ -8,6 +8,8 @@ $username = trim($_POST['username']);
 $email = trim($_POST['email']);
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
+
+
 if (empty($username) || empty($email) || empty($password) || empty(
 $confirm_password)) {
 $error = 'Todos los campos son requeridos';
@@ -18,6 +20,15 @@ $error = 'La contraseña debe tener un largo mínimo de 6 caracteres';
 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $error = 'Formato de correo electronico invalido';
 } else {
+// APLICAR HASH - Bcrypt con Salt automatica
+$hashed_password = password_hash($password , PASSWORD_DEFAULT);
+$stmt = $pdo->prepare("INSERT INTO users (username , email, password) VALUES (?,
+?, ?)");
+if ($stmt->execute([$username , $email, $hashed_password])) {
+$success = '¡Registro exitoso!';
+} else {
+$error = 'Registro fallido. Por favor, intentelo nuevamente.';
+}
 
 $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ? OR email
 = ?");
@@ -37,15 +48,7 @@ $error = 'Registro fallido. Por favor, intentelo nuevamente.';
 }
 }
 }
-// APLICAR HASH - Bcrypt con Salt automatica
-$hashed_password = password_hash($password , PASSWORD_DEFAULT);
-$stmt = $pdo->prepare("INSERT INTO users (username , email, password) VALUES (?,
-?, ?)");
-if ($stmt->execute([$username , $email, $hashed_password])) {
-$success = '¡Registro exitoso!';
-} else {
-$error = 'Registro fallido. Por favor, intentelo nuevamente.';
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
