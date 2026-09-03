@@ -1,7 +1,7 @@
 <?php
 // Iniciar sesion - Guardar datos del usuario en $_SESSION
 session_start();
-require_once '../login/config/database.php';
+require_once '../config/database.php';
 $error = '';
 $success = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
