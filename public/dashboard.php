@@ -23,7 +23,7 @@ exit;
 <body>
 <div class="container">
 <div class="dashboard">
-<div class="dashboard -header">
+<div class="dashboard-header">
 <h2>Panel de Usuario </h2>
 <a href="?logout=1" class="btn btn-danger">Logout </a>
 </div>
