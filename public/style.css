@@ -29,7 +29,8 @@ body {
   font-weight: 600;
 }
 .form-group {
-  margin-bottom: 20px;
+
+margin-bottom: 20px;
 }
 .form-group label {
   display: block;
@@ -66,7 +67,7 @@ body {
   color: #ffffff;
 }
 .btn-primary:hover {
-  background: #3182ce;
+    background: #3182ce;
 }
 .btn-danger {
   background: #fc8181;
@@ -75,7 +76,7 @@ body {
   padding: 8px 16px;
 }
 .btn-danger:hover {
-  background: #f56565;
+    background: #f56565;
 }
 .link {
   text-align: center;
@@ -133,7 +134,7 @@ body {
   margin-bottom: 8px;
 }
 .welcome p {
-  color: #718096;
+    color: #718096;
 }
 .info-box {
   background: #f7fafc;
